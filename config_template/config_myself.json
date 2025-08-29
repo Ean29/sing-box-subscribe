@@ -23,7 +23,7 @@
       "path": "",
       "cache_id": "",
       "store_fakeip": true,
-      "store_rdrc": true,
+      "store_rdrc": false,
       "rdrc_timeout": "7d"
     }
   },
@@ -33,8 +33,7 @@
       "tag": "tun-in",
       "interface_name": "",
       "address": [
-        "172.19.0.0/30",
-        "fdfe:dcba:9876::0/126"
+        "172.19.0.0/30"
       ],
       "mtu": 9000,
       "auto_route": true,
@@ -633,11 +632,11 @@
     "disable_expire": false,
     "independent_cache": true,
     "final": "Remote-DNS",
-    "strategy": "prefer_ipv4",
+    "strategy": "ipv4_only",
     "fakeip": {
       "enabled": true,
       "inet4_range": "198.18.0.0/15",
       "inet6_range": "fc00::/18"
     }
   }
-}
+}  
