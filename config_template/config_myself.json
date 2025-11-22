@@ -498,7 +498,7 @@
     "servers": [
       {
         "tag": "Local-DNS",
-        "address": "https://223.5.5.5:443/dns-query",
+        "address": "udp://223.5.5.5",
         "address_resolver": "local-dns-resovler",
         "detour": "direct"
       },
