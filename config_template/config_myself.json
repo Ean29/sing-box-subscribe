@@ -499,23 +499,11 @@
       {
         "tag": "Local-DNS",
         "address": "udp://223.5.5.5",
-        "address_resolver": "local-dns-resovler",
-        "detour": "direct"
-      },
-      {
-        "tag": "local-dns-resovler",
-        "address": "udp://223.5.5.5:53",
         "detour": "direct"
       },
       {
         "tag": "Remote-DNS",
         "address": "tls://8.8.8.8:853",
-        "address_resolver": "remote-dns-resovler",
-        "detour": "节点选择"
-      },
-      {
-        "tag": "remote-dns-resovler",
-        "address": "udp://8.8.8.8:53",
         "detour": "节点选择"
       },
       {
