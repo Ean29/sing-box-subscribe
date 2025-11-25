@@ -504,7 +504,7 @@
       {
         "tag": "Remote-DNS",
         "address": "tls://8.8.8.8",
-        "detour": "节点选择"
+        "detour": "Google"
       },
       {
         "tag": "fakeip",
