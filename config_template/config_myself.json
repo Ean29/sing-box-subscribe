@@ -498,17 +498,21 @@
     "servers": [
       {
         "tag": "Local-DNS",
-        "address": "https://223.5.5.5/dns-query",
+        "type": "https",
+        "address": "223.5.5.5",
         "detour": "direct"
       },
       {
         "tag": "Remote-DNS",
-        "address": "tls://8.8.8.8",
+        "type": "tls",
+        "address": "8.8.8.8",
         "detour": "Google"
       },
       {
         "tag": "fakeip",
-        "address": "fakeip"
+        "type": "fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
       }
     ],
     "rules": [
@@ -620,11 +624,6 @@
     "disable_expire": false,
     "independent_cache": true,
     "final": "Remote-DNS",
-    "strategy": "ipv4_only",
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/15",
-      "inet6_range": "fc00::/18"
-    }
+    "strategy": "ipv4_only"
   }
 }
