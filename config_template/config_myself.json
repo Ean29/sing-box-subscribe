@@ -95,7 +95,8 @@
       "interrupt_exist_connections": true,
       "outbounds": [
         "节点选择",
-        "{all}",
+        "America",
+        "Japan",
         "GLOBAL"
       ]
     },
@@ -105,7 +106,9 @@
       "interrupt_exist_connections": true,
       "outbounds": [
         "节点选择",
-        "{all}",
+        "America",
+        "Japan",
+        "Singapore",
         "GLOBAL"
       ]
     },
@@ -147,6 +150,81 @@
       "outbounds": [
         "节点选择",
         "direct"
+      ]
+    },
+    {
+      "tag": "HongKong",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇭🇰|HK|hk|香港|港|HongKong"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "America",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇺🇸|US|us|美国|美|United States"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "Singapore",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇸🇬|SG|sg|新加坡|狮|Singapore"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "Japan",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇯🇵|JP|jp|日本|日|Japan"
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "TaiWan",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"
+          ]
+        }
       ]
     },
     {
