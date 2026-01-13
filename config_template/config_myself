@@ -1,0 +1,630 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "debug",
+    "output": "",
+    "timestamp": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "external_ui_download_url": "https://gh-proxy.com/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "direct",
+      "secret": "",
+      "default_mode": "rule",
+      "access_control_allow_origin": ["*"],
+      "access_control_allow_private_network": false
+    },
+    "cache_file": {
+      "enabled": true,
+      "path": "",
+      "cache_id": "",
+      "store_fakeip": true,
+      "store_rdrc": false,
+      "rdrc_timeout": "7d"
+    }
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "interface_name": "",
+      "address": ["172.19.0.0/30"],
+      "mtu": 9000,
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": false,
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 7890
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 7890,
+      "tcp_fast_open": false,
+      "tcp_multi_path": false,
+      "udp_fragment": false
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "节点选择",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "HongKong",
+        "America",
+        "Singapore",
+        "Japan",
+        "TaiWan",
+        "Others"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "自动选择",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 150,
+      "outbounds": ["{all}"]
+    },
+    {
+      "type": "selector",
+      "tag": "Google",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "节点选择",
+        "HongKong",
+        "America",
+        "Singapore",
+        "Japan",
+        "TaiWan",
+        "Others"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "AI Services | OpenAI | Claude | ...",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "HongKong",
+        "America",
+        "Singapore",
+        "Japan",
+        "TaiWan",
+        "Others"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "Social Media | Telegram | X | ...",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "HongKong",
+        "America",
+        "Singapore",
+        "Japan",
+        "TaiWan",
+        "Others"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "Games",
+      "interrupt_exist_connections": true,
+      "outbounds": ["direct", "节点选择", "GLOBAL"]
+    },
+    {
+      "type": "selector",
+      "tag": "Apple",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "节点选择",
+        "direct",
+        "HongKong",
+        "America",
+        "Singapore",
+        "Japan",
+        "TaiWan",
+        "Others"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "GLOBAL",
+      "interrupt_exist_connections": true,
+      "outbounds": ["节点选择", "自动选择", "direct", "漏网之鱼"]
+    },
+    {
+      "type": "selector",
+      "tag": "漏网之鱼",
+      "interrupt_exist_connections": true,
+      "outbounds": ["节点选择", "direct"]
+    },
+    {
+      "tag": "HongKong",
+      "type": "selector",
+      "outbounds": ["{all}"],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"]
+        }
+      ]
+    },
+    {
+      "tag": "America",
+      "type": "selector",
+      "outbounds": ["{all}"],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["🇺🇸|US|us|美国|美|United States"]
+        }
+      ]
+    },
+    {
+      "tag": "Singapore",
+      "type": "selector",
+      "outbounds": ["{all}"],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["🇸🇬|SG|sg|新加坡|狮|Singapore"]
+        }
+      ]
+    },
+    {
+      "tag": "Japan",
+      "type": "selector",
+      "outbounds": ["{all}"],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["🇯🇵|JP|jp|日本|日|Japan"]
+        }
+      ]
+    },
+    {
+      "tag": "TaiWan",
+      "type": "selector",
+      "outbounds": ["{all}"],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]
+        }
+      ]
+    },
+    {
+      "tag": "Others",
+      "type": "selector",
+      "interrupt_exist_connections": true,
+      "outbounds": ["{all}"],
+      "filter": [
+        {
+          "action": "exclude",
+          "keywords": [
+            "🇭🇰|HK|hk|香港|港|HongKong|🇺🇸|US|us|美国|美|United States|🇸🇬|SG|sg|新加坡|狮|Singapore|🇯🇵|JP|jp|日本|日|Japan|🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "route",
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "action": "route",
+        "clash_mode": "global",
+        "outbound": "GLOBAL"
+      },
+      {
+        "action": "sniff",
+        "inbound": "mixed-in"
+      },
+      {
+        "action": "sniff",
+        "inbound": "tun-in"
+      },
+      {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 53
+          },
+          {
+            "protocol": "dns"
+          }
+        ],
+        "action": "hijack-dns"
+      },
+      {
+        "action": "route",
+        "rule_set": ["games"],
+        "outbound": "Games"
+      },
+      {
+        "action": "route",
+        "rule_set": ["Apple"],
+        "outbound": "Apple"
+      },
+      {
+        "action": "route",
+        "rule_set": ["OPENAI", "Claude", "Gemini"],
+        "outbound": "AI Services | OpenAI | Claude | ..."
+      },
+      {
+        "action": "route",
+        "rule_set": ["Telegram", "Facebook", "Twitter", "Instagram"],
+        "outbound": "Social Media | Telegram | X | ..."
+      },
+      {
+        "action": "route",
+        "rule_set": ["Google", "geosite-Youtube"],
+        "outbound": "Google"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "ChinaDNS",
+          "ChinaIPs",
+          "ChinaMax",
+          "手动CN",
+          "China",
+          "闲鱼",
+          "WeChat",
+          "微博",
+          "抖音",
+          "Bilibili"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "mihoyo-cn-geosite.json",
+          "GeoSite-Private",
+          "GeoSite-CN",
+          "GeoIP-Private",
+          "GeoIP-CN"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "action": "reject",
+        "rule_set": ["Category-Ads"]
+      },
+      {
+        "action": "route",
+        "rule_set": ["GeoLocation-!CN"],
+        "outbound": "节点选择"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "games",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "抖音",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/DouYin/DouYin.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Bilibili",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/BiliBili/BiliBili.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Facebook",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Facebook/Facebook.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Twitter",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Twitter/Twitter.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "geosite-Youtube",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "微博",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Weibo/Weibo.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "WeChat",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/WeChat/WeChat.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "闲鱼",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/XianYu/XianYu.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Apple",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Apple/Apple.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "China",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/China/China.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "ChinaDNS",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/ChinaDNS/ChinaDNS.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "ChinaIPs",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/ChinaIPs/ChinaIPs.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "ChinaMax",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/ChinaMax/ChinaMax.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "OPENAI",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/OpenAI/OpenAI.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Microsoft",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Microsoft/Microsoft.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Google",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Google/Google.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Claude",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Claude/Claude.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Telegram",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Telegram/Telegram.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "手动CN",
+        "type": "inline",
+        "rules": [
+          {
+            "domain_suffix": ["fcsubcn.pro", "fcsubcn.cc", "feiyudo.com"]
+          }
+        ]
+      },
+      {
+        "tag": "mihoyo-cn-geosite.json",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/mihoyo-cn.json",
+        "format": "source",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Category-Ads",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GeoIP-Private",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GeoSite-Private",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GeoIP-CN",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GeoSite-CN",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "GeoLocation-!CN",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Gemini",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Gemini/Gemini.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      },
+      {
+        "tag": "Instagram",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Instagram/Instagram.srs",
+        "format": "binary",
+        "download_detour": "direct"
+      }
+    ],
+    "auto_detect_interface": true,
+    "default_domain_resolver": "Local-DNS",
+    "final": "节点选择"
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "Local-DNS",
+        "type": "quic",
+        "server": "223.5.5.5"
+      },
+      {
+        "tag": "Remote-DNS",
+        "type": "quic",
+        "server": "8.8.8.8",
+        "detour": "Google"
+      },
+      {
+        "tag": "fakeip",
+        "type": "fakeip",
+        "inet4_range": "198.18.0.0/15",
+        "inet6_range": "fc00::/18"
+      }
+    ],
+    "rules": [
+      {
+        "action": "route",
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "domain_suffix": [
+              ".lan",
+              ".localdomain",
+              ".example",
+              ".invalid",
+              ".localhost",
+              ".test",
+              ".local",
+              ".home.arpa",
+              ".msftconnecttest.com",
+              ".msftncsi.com"
+            ],
+            "invert": true
+          },
+          {
+            "query_type": ["A", "AAAA"]
+          }
+        ],
+        "server": "fakeip"
+      },
+      {
+        "action": "route",
+        "clash_mode": "direct",
+        "server": "Local-DNS"
+      },
+      {
+        "action": "route",
+        "clash_mode": "global",
+        "server": "Remote-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "抖音",
+          "Bilibili",
+          "WeChat",
+          "微博",
+          "闲鱼",
+          "China",
+          "ChinaDNS",
+          "Apple",
+          "ChinaIPs",
+          "ChinaMax",
+          "Microsoft",
+          "手动CN",
+          "GeoIP-CN",
+          "GeoSite-CN"
+        ],
+        "server": "Local-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "Facebook",
+          "Twitter",
+          "geosite-Youtube",
+          "OPENAI",
+          "Google",
+          "Claude",
+          "Telegram",
+          "GeoLocation-!CN"
+        ],
+        "server": "Remote-DNS"
+      }
+    ],
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": true,
+    "final": "Remote-DNS",
+    "strategy": "prefer_ipv4"
+  }
+}
