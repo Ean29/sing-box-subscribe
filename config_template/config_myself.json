@@ -268,7 +268,7 @@
       },
       {
         "action": "route",
-        "rule_set": ["OPENAI", "Claude", "Gemini"],
+        "rule_set": ["OPENAI", "Claude", "Gemini", "Copilot"],
         "outbound": "AI Services | OpenAI | Claude | ..."
       },
       {
@@ -523,6 +523,13 @@
         "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Instagram/Instagram.srs",
         "format": "binary",
         "download_detour": "direct"
+      },
+      {
+        "tag": "Copilot",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Copilot/Copilot.srs",
+        "format": "binary",
+        "download_detour": "direct"
       }
     ],
     "auto_detect_interface": true,
@@ -616,7 +623,8 @@
           "Google",
           "Claude",
           "Telegram",
-          "GeoLocation-!CN"
+          "GeoLocation-!CN",
+          "Copilot"
         ],
         "server": "Remote-DNS"
       }
