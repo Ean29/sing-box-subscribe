@@ -278,7 +278,7 @@
       },
       {
         "action": "route",
-        "rule_set": ["Google", "geosite-Youtube"],
+        "rule_set": ["Google", "geosite-Youtube", "Github"],
         "outbound": "Google"
       },
       {
@@ -530,6 +530,13 @@
         "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/Copilot/Copilot.srs",
         "format": "binary",
         "download_detour": "direct"
+      },
+      {
+        "tag": "Github",
+        "type": "remote",
+        "url": "https://cdn.jsdelivr.net/gh/senshinya/singbox_ruleset@main/rule/GitHub/GitHub.srs",
+        "format": "binary",
+        "download_detour": "direct"
       }
     ],
     "auto_detect_interface": true,
@@ -624,7 +631,8 @@
           "Claude",
           "Telegram",
           "GeoLocation-!CN",
-          "Copilot"
+          "Copilot",
+          "Github"
         ],
         "server": "Remote-DNS"
       }
