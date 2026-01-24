@@ -636,7 +636,6 @@
           "Google",
           "Claude",
           "Telegram",
-          "GeoLocation-!CN",
           "Copilot",
           "Github"
         ],
@@ -645,7 +644,7 @@
       {
         "action": "route",
         "rule_set": [
-          "GeoLocation-!CN",
+          "GeoLocation-!CN"
         ],
         "server": "Proxy-DNS"
       }
