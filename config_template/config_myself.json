@@ -553,8 +553,14 @@
       {
         "tag": "Remote-DNS",
         "type": "quic",
-        "server": "8.8.8.8",
+        "server": "1.1.1.1",
         "detour": "Google"
+      },
+      {
+        "tag": "Proxy-DNS",
+        "type": "quic",
+        "server": "1.1.1.1",
+        "detour": "节点选择"
       },
       {
         "tag": "fakeip",
@@ -635,6 +641,13 @@
           "Github"
         ],
         "server": "Remote-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoLocation-!CN",
+        ],
+        "server": "Proxy-DNS"
       }
     ],
     "disable_cache": false,
