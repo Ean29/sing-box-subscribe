@@ -65,7 +65,8 @@
         "Singapore",
         "Japan",
         "TaiWan",
-        "Others"
+        "Others",
+        "dynamic-ip"
       ]
     },
     {
@@ -219,12 +220,6 @@
       ]
     },
     {
-      "tag": "Relay",
-      "type": "selector",
-      "interrupt_exist_connections": true,
-      "outbounds": ["dynamic-ip", "direct"]      
-    },
-    {
           "type": "socks",
           "tag": "dynamic-ip",        
           "server": "us.novproxy.io",
@@ -232,7 +227,7 @@
           "version": "5",
           "username": "khl640026-region-US-st-California-sid-b3LMfMey-t-60",
           "password": "yegnd8kx",
-          "detour": "节点选择"
+          "detour": "Google"
     },
     {
       "type": "direct",
