@@ -230,9 +230,7 @@
           "server_port": 1000,
           "version": "5",
           "username": "khl640026-region-US-st-California-sid-b3LMfMey-t-60",
-          "password": "yegnd8kx",
-          "network": "udp",
-          "udp_over_tcp": false | {},
+          "password": "yegnd8kx"
         }
       ],
       "detour": "select"
