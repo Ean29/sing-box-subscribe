@@ -222,7 +222,7 @@
       "tag": "Relay",
       "type": "selector",
       "interrupt_exist_connections": true,
-      "outbounds": ["dynamic-ip"]      
+      "outbounds": ["dynamic-ip", "direct"]      
     },
     {
           "type": "socks",
