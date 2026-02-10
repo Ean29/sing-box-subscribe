@@ -147,7 +147,7 @@
       "type": "selector",
       "tag": "漏网之鱼 | Relay",
       "interrupt_exist_connections": true,
-      "outbounds": ["节点选择", "direct", "HongKong", "America", "Singapore", "Japan"]
+      "outbounds": ["direct", "HongKong", "America", "Singapore", "Japan"]
     },
     {
       "tag": "HongKong",
