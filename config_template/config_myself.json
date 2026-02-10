@@ -141,7 +141,7 @@
       "type": "selector",
       "tag": "GLOBAL",
       "interrupt_exist_connections": true,
-      "outbounds": ["节点选择", "自动选择", "direct", "漏网之鱼"]
+      "outbounds": ["节点选择", "自动选择", "direct", "漏网之鱼 | Relay"]
     },
     {
       "type": "selector",
