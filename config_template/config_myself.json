@@ -145,9 +145,9 @@
     },
     {
       "type": "selector",
-      "tag": "漏网之鱼",
+      "tag": "漏网之鱼 | Relay",
       "interrupt_exist_connections": true,
-      "outbounds": ["节点选择", "direct"]
+      "outbounds": ["节点选择", "direct", "HongKong", "America", "Singapore", "Japan"]
     },
     {
       "tag": "HongKong",
@@ -226,7 +226,7 @@
       "version": "5",
       "username": "khl640026-region-US-st-California-sid-b3LMfMey-t-60",
       "password": "yegnd8kx",
-      "detour": "Google"
+      "detour": "漏网之鱼 | Relay"
     },
     {
       "type": "direct",
