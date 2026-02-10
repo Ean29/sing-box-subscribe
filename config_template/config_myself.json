@@ -65,8 +65,7 @@
         "Singapore",
         "Japan",
         "TaiWan",
-        "Others",
-        "dynamic-ip"
+        "Others"        
       ]
     },
     {
@@ -209,7 +208,7 @@
       "tag": "Others",
       "type": "selector",
       "interrupt_exist_connections": true,
-      "outbounds": ["{all}"],
+      "outbounds": ["{all}", "dynamic-ip"],
       "filter": [
         {
           "action": "exclude",
@@ -220,14 +219,14 @@
       ]
     },
     {
-          "type": "socks",
-          "tag": "dynamic-ip",        
-          "server": "us.novproxy.io",
-          "server_port": 1000,
-          "version": "5",
-          "username": "khl640026-region-US-st-California-sid-b3LMfMey-t-60",
-          "password": "yegnd8kx",
-          "detour": "Google"
+      "type": "socks",
+      "tag": "dynamic-ip",        
+      "server": "us.novproxy.io",
+      "server_port": 1000,
+      "version": "5",
+      "username": "khl640026-region-US-st-California-sid-b3LMfMey-t-60",
+      "password": "yegnd8kx",
+      "detour": "Google"
     },
     {
       "type": "direct",
