@@ -564,18 +564,18 @@
     "servers": [
       {
         "tag": "Local-DNS",
-        "type": "https",
+        "type": "h3",
         "server": "223.5.5.5"
       },
       {
         "tag": "Remote-DNS",
-        "type": "https",
+        "type": "h3",
         "server": "1.1.1.1",
         "detour": "Google"
       },
       {
         "tag": "Proxy-DNS",
-        "type": "https",
+        "type": "h3",
         "server": "1.1.1.1",
         "detour": "节点选择"
       },
