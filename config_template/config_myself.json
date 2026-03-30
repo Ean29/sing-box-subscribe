@@ -38,7 +38,7 @@
       "stack": "system",
       "platform": {
         "http_proxy": {
-          "enabled": false,
+          "enabled": true,
           "server": "127.0.0.1",
           "server_port": 7890
         }
@@ -141,7 +141,14 @@
       "type": "selector",
       "tag": "GLOBAL",
       "interrupt_exist_connections": true,
-      "outbounds": ["节点选择", "自动选择", "direct", "漏网之鱼 | Relay"]
+      "outbounds": [
+        "HongKong",
+        "America",
+        "Singapore",
+        "Japan",
+        "TaiWan",
+        "Others"        
+      ]
     },
     {
       "type": "selector",
@@ -557,18 +564,18 @@
     "servers": [
       {
         "tag": "Local-DNS",
-        "type": "h3",
+        "type": "https",
         "server": "223.5.5.5"
       },
       {
         "tag": "Remote-DNS",
-        "type": "h3",
+        "type": "https",
         "server": "1.1.1.1",
         "detour": "Google"
       },
       {
         "tag": "Proxy-DNS",
-        "type": "h3",
+        "type": "https",
         "server": "1.1.1.1",
         "detour": "节点选择"
       },
