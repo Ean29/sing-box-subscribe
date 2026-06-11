@@ -474,7 +474,14 @@
         "type": "inline",
         "rules": [
           {
-            "domain_suffix": ["fcsubcn.pro", "fcsubcn.cc", "feiyudo.com"]
+            "domain_suffix": [
+              "fcsubcn.pro",
+              "fcsubcn.cc",
+              "feiyudo.com",
+              "codefun2000.com",
+              "cc.cd",
+              "linux.do"
+            ]
           }
         ]
       },
