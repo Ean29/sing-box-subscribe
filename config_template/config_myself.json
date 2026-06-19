@@ -13,16 +13,16 @@
       "external_ui_download_detour": "direct",
       "secret": "",
       "default_mode": "rule",
-      "access_control_allow_origin": ["*"],
+      "access_control_allow_origin": [
+        "*"
+      ],
       "access_control_allow_private_network": false
     },
     "cache_file": {
       "enabled": true,
       "path": "",
       "cache_id": "",
-      "store_fakeip": true,
-      "store_rdrc": false,
-      "rdrc_timeout": "7d"
+      "store_fakeip": true
     }
   },
   "inbounds": [
@@ -30,7 +30,9 @@
       "type": "tun",
       "tag": "tun-in",
       "interface_name": "",
-      "address": ["172.19.0.0/30"],
+      "address": [
+        "172.19.0.0/30"
+      ],
       "mtu": 9000,
       "auto_route": true,
       "strict_route": true,
@@ -65,7 +67,7 @@
         "Singapore",
         "Japan",
         "TaiWan",
-        "Others"        
+        "Others"
       ]
     },
     {
@@ -74,7 +76,9 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
       "tolerance": 150,
-      "outbounds": ["{all}"]
+      "outbounds": [
+        "{all}"
+      ]
     },
     {
       "type": "selector",
@@ -120,7 +124,11 @@
       "type": "selector",
       "tag": "Games",
       "interrupt_exist_connections": true,
-      "outbounds": ["direct", "节点选择", "GLOBAL"]
+      "outbounds": [
+        "direct",
+        "节点选择",
+        "GLOBAL"
+      ]
     },
     {
       "type": "selector",
@@ -147,67 +155,93 @@
         "Singapore",
         "Japan",
         "TaiWan",
-        "Others"        
+        "Others"
       ]
     },
     {
       "type": "selector",
       "tag": "漏网之鱼 | Relay",
       "interrupt_exist_connections": true,
-      "outbounds": ["direct", "HongKong", "America", "Singapore", "Japan"]
+      "outbounds": [
+        "direct",
+        "HongKong",
+        "America",
+        "Singapore",
+        "Japan"
+      ]
     },
     {
       "tag": "HongKong",
       "type": "selector",
-      "outbounds": ["{all}"],
+      "outbounds": [
+        "{all}"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"]
+          "keywords": [
+            "🇭🇰|HK|hk|香港|港|HongKong"
+          ]
         }
       ]
     },
     {
       "tag": "America",
       "type": "selector",
-      "outbounds": ["{all}"],
+      "outbounds": [
+        "{all}"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇺🇸|US|us|美国|美|United States"]
+          "keywords": [
+            "🇺🇸|US|us|美国|美|United States"
+          ]
         }
       ]
     },
     {
       "tag": "Singapore",
       "type": "selector",
-      "outbounds": ["{all}"],
+      "outbounds": [
+        "{all}"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇸🇬|SG|sg|新加坡|狮|Singapore"]
+          "keywords": [
+            "🇸🇬|SG|sg|新加坡|狮|Singapore"
+          ]
         }
       ]
     },
     {
       "tag": "Japan",
       "type": "selector",
-      "outbounds": ["{all}"],
+      "outbounds": [
+        "{all}"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇯🇵|JP|jp|日本|日|Japan"]
+          "keywords": [
+            "🇯🇵|JP|jp|日本|日|Japan"
+          ]
         }
       ]
     },
     {
       "tag": "TaiWan",
       "type": "selector",
-      "outbounds": ["{all}"],
+      "outbounds": [
+        "{all}"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]
+          "keywords": [
+            "🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"
+          ]
         }
       ]
     },
@@ -215,7 +249,10 @@
       "tag": "Others",
       "type": "selector",
       "interrupt_exist_connections": true,
-      "outbounds": ["{all}", "dynamic-ip"],
+      "outbounds": [
+        "{all}",
+        "dynamic-ip"
+      ],
       "filter": [
         {
           "action": "exclude",
@@ -227,7 +264,7 @@
     },
     {
       "type": "socks",
-      "tag": "dynamic-ip",        
+      "tag": "dynamic-ip",
       "server": "us.novproxy.io",
       "server_port": 1000,
       "version": "5",
@@ -274,28 +311,63 @@
         "action": "hijack-dns"
       },
       {
+        "type": "logical",
+        "mode": "or",
+        "rules": [
+          {
+            "port": 853
+          },
+          {
+            "network": "udp",
+            "port": 443
+          },
+          {
+            "protocol": "stun"
+          }
+        ],
+        "action": "reject"
+      },
+      {
         "action": "route",
-        "rule_set": ["games"],
+        "rule_set": [
+          "games"
+        ],
         "outbound": "Games"
       },
       {
         "action": "route",
-        "rule_set": ["Apple"],
+        "rule_set": [
+          "Apple"
+        ],
         "outbound": "Apple"
       },
       {
         "action": "route",
-        "rule_set": ["OPENAI", "Claude", "Gemini", "Copilot"],
+        "rule_set": [
+          "OPENAI",
+          "Claude",
+          "Gemini",
+          "Copilot"
+        ],
         "outbound": "AI Services | OpenAI | Claude | ..."
       },
       {
         "action": "route",
-        "rule_set": ["Telegram", "Facebook", "Twitter", "Instagram"],
+        "rule_set": [
+          "Telegram",
+          "Facebook",
+          "Twitter",
+          "Instagram"
+        ],
         "outbound": "Social Media | Telegram | X | ..."
       },
       {
         "action": "route",
-        "rule_set": ["Google", "geosite-Youtube", "Github"],
+        "rule_set": [
+          "Google",
+          "geosite-Youtube",
+          "Github"
+        ],
         "outbound": "Google"
       },
       {
@@ -327,11 +399,15 @@
       },
       {
         "action": "reject",
-        "rule_set": ["Category-Ads"]
+        "rule_set": [
+          "Category-Ads"
+        ]
       },
       {
         "action": "route",
-        "rule_set": ["GeoLocation-!CN"],
+        "rule_set": [
+          "GeoLocation-!CN"
+        ],
         "outbound": "节点选择"
       }
     ],
@@ -569,19 +645,25 @@
     "servers": [
       {
         "tag": "Local-DNS",
-        "type": "quic",
-        "server": "223.5.5.5"
+        "type": "https",
+        "server": "223.5.5.5",
+        "path": "/dns-query",
+        "tls": {
+          "server_name": "dns.alidns.com"
+        }
       },
       {
         "tag": "Remote-DNS",
-        "type": "quic",
+        "type": "https",
         "server": "1.1.1.1",
+        "path": "/dns-query",
         "detour": "Google"
       },
       {
         "tag": "Proxy-DNS",
-        "type": "quic",
+        "type": "https",
         "server": "1.1.1.1",
+        "path": "/dns-query",
         "detour": "节点选择"
       },
       {
@@ -613,7 +695,10 @@
             "invert": true
           },
           {
-            "query_type": ["A", "AAAA"]
+            "query_type": [
+              "A",
+              "AAAA"
+            ]
           }
         ],
         "server": "fakeip"
@@ -639,11 +724,8 @@
           "China",
           "ChinaDNS",
           "Apple",
-          "ChinaIPs",
-          "ChinaMax",
           "Microsoft",
           "手动CN",
-          "GeoIP-CN",
           "GeoSite-CN"
         ],
         "server": "Local-DNS"
@@ -673,7 +755,6 @@
     ],
     "disable_cache": false,
     "disable_expire": false,
-    "independent_cache": true,
     "final": "Remote-DNS",
     "strategy": "prefer_ipv4"
   }
