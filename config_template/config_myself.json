@@ -31,7 +31,8 @@
       "tag": "tun-in",
       "interface_name": "",
       "address": [
-        "172.19.0.0/30"
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
       ],
       "mtu": 9000,
       "auto_route": true,
@@ -316,13 +317,6 @@
         "rules": [
           {
             "port": 853
-          },
-          {
-            "network": "udp",
-            "port": 443
-          },
-          {
-            "protocol": "stun"
           }
         ],
         "action": "reject"
@@ -333,6 +327,12 @@
           "games"
         ],
         "outbound": "Games"
+      },
+      {
+        "action": "reject",
+        "rule_set": [
+          "Category-Ads"
+        ]
       },
       {
         "action": "route",
@@ -365,8 +365,7 @@
         "action": "route",
         "rule_set": [
           "Google",
-          "geosite-Youtube",
-          "Github"
+          "geosite-Youtube"
         ],
         "outbound": "Google"
       },
@@ -398,15 +397,10 @@
         "outbound": "direct"
       },
       {
-        "action": "reject",
-        "rule_set": [
-          "Category-Ads"
-        ]
-      },
-      {
         "action": "route",
         "rule_set": [
-          "GeoLocation-!CN"
+          "GeoLocation-!CN",
+          "Github"
         ],
         "outbound": "节点选择"
       }
